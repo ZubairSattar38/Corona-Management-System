@@ -29,7 +29,7 @@ class LoginPageState extends State<LoginPage> {
 
   Widget build(BuildContext context) {
     return new Scaffold(
-        // scaffold is basically a structure which is provided by android  you know declared something like a appbar
+        // scaffold is basically a structure which is provided by android  you know declared something like a app
         backgroundColor: Colors.black,
         appBar: AppBar(
           backgroundColor: Colors.black,
