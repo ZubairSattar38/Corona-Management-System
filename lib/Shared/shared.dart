@@ -1,8 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void>  getStringValuesSF(String key, String value) async {
-      print(value);
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    
     prefs.setString(key, value);
 }
 

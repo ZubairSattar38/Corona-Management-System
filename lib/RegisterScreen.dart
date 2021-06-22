@@ -114,7 +114,8 @@ class RegisterPageState extends State<RegisterPage> {
         "email": email.text,
         "password": password.text
       };
-      bool isRun = await authPost(object, 'register');
+      final isRun = await authPost(object, 'register');
+      print(isRun);
       if (isRun) {
         print('Successfully Executed');
         Navigator.of(context)

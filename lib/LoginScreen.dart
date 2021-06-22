@@ -17,9 +17,7 @@ class LoginPageState extends State<LoginPage> {
   Future<void> onLogin() async {
     var object = {"email": email.text, "password": password.text};
     final isRun = await authPost(object, 'login');
-    print('Checing');
     if (isRun) {
-      print('Successfully Executed');
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => HomeScreen()));
     } else {

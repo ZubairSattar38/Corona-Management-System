@@ -1,3 +1,5 @@
+import 'package:db_flutter/LoginSlider.dart';
+import 'package:db_flutter/Shared/shared.dart';
 import 'package:flutter/material.dart';
 import './AddDoctor.dart';
 
@@ -9,6 +11,19 @@ class HomeScreen extends StatefulWidget {
 class HomePageState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    getSavedValue('token').then(
+      (token) => {
+          if(token==''){
+            Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => LoginSlider()))
+          }
+          }
+      ).
+      catchError((error)=>{
+        print(error)
+      });
     return Scaffold(
         appBar: AppBar(
           title: Text('Home Page'),
@@ -26,6 +41,7 @@ class HomePageState extends State<HomeScreen> {
                 ),
               ),
             ),
+            (getSavedValue('roll')=='admin')?
             ListTile(
               leading: Icon(Icons.message),
               title: Text('Add Doctor'),
@@ -36,7 +52,18 @@ class HomePageState extends State<HomeScreen> {
                     MaterialPageRoute(
                         builder: (BuildContext context) => AddDoctor()));
               },
-            ),
+            ):
+            ListTile(
+              leading: Icon(Icons.message),
+              title: Text('Doctors'),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => AddDoctor()));
+              },
+            )
           ],
         )));
   }

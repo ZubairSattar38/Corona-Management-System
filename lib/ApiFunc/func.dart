@@ -10,15 +10,22 @@ Future<bool> authPost(var object, String type) async {
       },
       body: jsonEncode(object));
   if (result.statusCode == 200) {
-    String data = result.body;
-        print(data);
-    var decodeData = jsonDecode(data);
-    getStringValuesSF('token', decodeData['token']);
-    getStringValuesSF('email', decodeData['email']);
-    getStringValuesSF('roll', decodeData['roll']);
-
-    return Future.value(true);
-  }else{
+    var decodeData = json.decode(result.body);
+    if (decodeData['token'].toString()!='') {
+      getStringValuesSF('token', decodeData['token'].toString());
+   }
+    if (decodeData['email'].toString() !='') {
+      getStringValuesSF('email', decodeData['email'].toString());
+    }
+    if (decodeData['roll'].toString()!='') {
+      print(decodeData['roll'].toString());
+      getStringValuesSF('roll', decodeData['roll'].toString());
+    }
+   return Future.value(true);
+  } else {
     return Future.value(false);
   }
 }
+
+
+
