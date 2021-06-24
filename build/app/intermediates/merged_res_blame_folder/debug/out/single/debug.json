@@ -4,10 +4,6 @@
         "source": "/Users/zubairsattar/Development/DB_Lab_pro/db_flutter/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     },
     {
-        "merged": "/Users/zubairsattar/Development/DB_Lab_pro/db_flutter/build/app/intermediates/res/merged/debug/drawable_launch_background.xml.flat",
-        "source": "/Users/zubairsattar/Development/DB_Lab_pro/db_flutter/android/app/src/main/res/drawable/launch_background.xml"
-    },
-    {
         "merged": "/Users/zubairsattar/Development/DB_Lab_pro/db_flutter/build/app/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
         "source": "/Users/zubairsattar/Development/DB_Lab_pro/db_flutter/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
     },

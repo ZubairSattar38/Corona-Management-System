@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './LoginSlider.dart';
+import 'Widgets/LoginSlider.dart';
 void main() {
   runApp(MyApp());
 }

@@ -1,4 +1,10 @@
-#Tue Jun 22 01:35:54 PKT 2021
-base.0=/Users/zubairsattar/Development/DB_Lab_pro/db_flutter/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+#Thu Jun 24 14:26:51 PKT 2021
+path.2=classes_0.dex
+path.1=classes.dex
 path.0=classes.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
 renamed.0=classes.dex
+base.2=/Users/zubairsattar/Development/DB_Lab_pro/db_flutter/build/app/intermediates/dex/debug/mergeLibDexDebug/classes_0.dex
+base.1=/Users/zubairsattar/Development/DB_Lab_pro/db_flutter/build/app/intermediates/dex/debug/mergeProjectDexDebug/classes.dex
+base.0=/Users/zubairsattar/Development/DB_Lab_pro/db_flutter/build/app/intermediates/dex/debug/mergeExtDexDebug/classes.dex
