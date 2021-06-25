@@ -9,15 +9,7 @@ class PartialVacinatedScreen extends StatefulWidget {
 class PartialVacinatedState extends State<PartialVacinatedScreen> {
   List patient = [];
   final List<int> colorCodes = <int>[600, 500, 100];
-  Future<void> getPatient(String type) async {
-    patient = await getPatientApi(type);
-    print(patient);
-  }
-  void initState() {
-    getPatient("NULL");
-    super.initState();
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(

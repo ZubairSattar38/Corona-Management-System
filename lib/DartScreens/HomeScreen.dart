@@ -33,23 +33,24 @@ class HomePageState extends State<HomeScreen> {
         title: Text('DashBoard'),
       ),
       body: Stack(children: <Widget>[
-        new SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              new PieChartSample3(),
-              new Row(children: <Widget>[
-                Flexible(
-                  child: Padding(
-                      padding: EdgeInsets.all(8.0), child: LineChartWidget()),
-                ),
-                Flexible(
-                  child: Padding(
-                      padding: EdgeInsets.all(8.0), child: LineChartWidget()),
-                )
-              ]),
-            ],
+        Expanded(
+                  child: new ListView(
+              children: <Widget>[
+                new PieChartSample3(),
+                new Row(children: <Widget>[
+                  Flexible(
+                    child: Padding(
+                        padding: EdgeInsets.all(8.0), child: LineChartWidget()),
+                  ),
+                  Flexible(
+                    child: Padding(
+                        padding: EdgeInsets.all(8.0), child: LineChartWidget()),
+                  )
+                ]),
+              ],
+            ),
           ),
-        )
+        
       ]),
     );
   }

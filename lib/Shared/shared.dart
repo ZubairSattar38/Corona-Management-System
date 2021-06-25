@@ -1,5 +1,11 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+  const String _patientList='patientList';
+  Future setPatientList(List<String> list)async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList(_patientList, list);
+  } 
+
 Future<void>  getStringValuesSF(String key, String value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(key, value);

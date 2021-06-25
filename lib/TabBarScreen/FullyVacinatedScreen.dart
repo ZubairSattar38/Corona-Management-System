@@ -11,7 +11,7 @@ class FullyVacinatedState extends State<FullyVacinatedScreen> {
   List patient = [];
   final List<int> colorCodes = <int>[600, 500, 100];
   Future<void> getPatient() async {
-    patient = await getPatientApi("NULL");
+    // patient = await getPatientApi("NULL");
     print(patient);
   }
   

@@ -80,154 +80,155 @@ class AddDoctorState extends State<AddDoctor> {
             image: new AssetImage('assets/whiteBack.jpeg'),
             fit: BoxFit.cover,
           ),
-          new Form(
-              child: SingleChildScrollView(
-                  child: new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              new Row(children: <Widget>[
-                Flexible(
-                  child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(10),
-                            labelText: "Enter First Name"),
-                        controller: firstName,
-                      )),
-                ),
-                Flexible(
-                  child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                            contentPadding: EdgeInsets.all(10),
-                            labelText: "Enter Last Name"),
-                        controller: lastName,
-                      )),
-                )
-              ]),
-              new Row(children: <Widget>[
-                Flexible(
-                  child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          labelText: "Enter Phone Number",
-                        ),
-                        controller: phoneNumber,
-                      )),
-                ),
-                Flexible(
-                  child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: TextFormField(
-                        decoration: InputDecoration(labelText: "Enter Email"),
-                        controller: email,
-                      )),
-                )
-              ]),
-              new Row(children: <Widget>[
-                Flexible(
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      decoration:
-                          new InputDecoration(labelText: "Enter Password"),
-                      keyboardType: TextInputType.text,
-                      obscureText:
-                          true, // it does not show the text while writing
-                      controller: password,
-                    ),
+          Expanded(
+                      child: new Form(
+                child: ListView(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                new Row(children: <Widget>[
+                  Flexible(
+                    child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(10),
+                              labelText: "Enter First Name"),
+                          controller: firstName,
+                        )),
                   ),
-                ),
-              ]),
-              new Row(children: <Widget>[
-                Flexible(
-                  child: Padding(
+                  Flexible(
+                    child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                              contentPadding: EdgeInsets.all(10),
+                              labelText: "Enter Last Name"),
+                          controller: lastName,
+                        )),
+                  )
+                ]),
+                new Row(children: <Widget>[
+                  Flexible(
+                    child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            labelText: "Enter Phone Number",
+                          ),
+                          controller: phoneNumber,
+                        )),
+                  ),
+                  Flexible(
+                    child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          decoration: InputDecoration(labelText: "Enter Email"),
+                          controller: email,
+                        )),
+                  )
+                ]),
+                new Row(children: <Widget>[
+                  Flexible(
+                    child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: TextFormField(
                         decoration:
-                            InputDecoration(labelText: "Enter Qualification"),
-                        controller: qualification,
-                      )),
-                ),
-              ]),
-              Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(labelText: "Enter Contact No"),
-                    controller: contactNo,
-                  )),
-              Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(labelText: "Enter Age"),
-                    controller: age,
-                  )),
-              Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    decoration: InputDecoration(labelText: "Enter City"),
-                    controller: city,
-                  )),
+                            new InputDecoration(labelText: "Enter Password"),
+                        keyboardType: TextInputType.text,
+                        obscureText:
+                            true, // it does not show the text while writing
+                        controller: password,
+                      ),
+                    ),
+                  ),
+                ]),
+                new Row(children: <Widget>[
+                  Flexible(
+                    child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          decoration:
+                              InputDecoration(labelText: "Enter Qualification"),
+                          controller: qualification,
+                        )),
+                  ),
+                ]),
+                Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      decoration: InputDecoration(labelText: "Enter Contact No"),
+                      controller: contactNo,
+                    )),
+                Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      decoration: InputDecoration(labelText: "Enter Age"),
+                      controller: age,
+                    )),
+                Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      decoration: InputDecoration(labelText: "Enter City"),
+                      controller: city,
+                    )),
 
-              // Padding(
-              //   padding: EdgeInsets.all(16.0),
-              //   child: DropdownButton<String>(
-              //     focusColor: Colors.white,
-              //     value: _setDefaultCity,
-              //     //elevation: 5,
-              //     style: TextStyle(color: Colors.white),
-              //     iconEnabledColor: Colors.black,
-              //     items: <String>[
-              //       'Android',
-              //       'IOS',
-              //       'Flutter',
-              //       'Node',
-              //       'Java',
-              //       'Python',
-              //       'PHP',
-              //     ].map<DropdownMenuItem<String>>((String value) {
-              //       return DropdownMenuItem<String>(
-              //         value: value,
-              //         child: Text(
-              //           value,
-              //           style: TextStyle(color: Colors.black),
-              //         ),
-              //       );
-              //     }).toList(),
-              //     hint: Text(
-              //       "Please choose a langauage",
-              //       style: TextStyle(
-              //           color: Colors.black,
-              //           fontSize: 14,
-              //           fontWeight: FontWeight.w500),
-              //     ),
-              //     onChanged: (String? value) {
-              //       setState(() {
-              //         _setDefaultCity = value.toString();
-              //       });
-              //     },
-              //   ),
-              // ),
+                // Padding(
+                //   padding: EdgeInsets.all(16.0),
+                //   child: DropdownButton<String>(
+                //     focusColor: Colors.white,
+                //     value: _setDefaultCity,
+                //     //elevation: 5,
+                //     style: TextStyle(color: Colors.white),
+                //     iconEnabledColor: Colors.black,
+                //     items: <String>[
+                //       'Android',
+                //       'IOS',
+                //       'Flutter',
+                //       'Node',
+                //       'Java',
+                //       'Python',
+                //       'PHP',
+                //     ].map<DropdownMenuItem<String>>((String value) {
+                //       return DropdownMenuItem<String>(
+                //         value: value,
+                //         child: Text(
+                //           value,
+                //           style: TextStyle(color: Colors.black),
+                //         ),
+                //       );
+                //     }).toList(),
+                //     hint: Text(
+                //       "Please choose a langauage",
+                //       style: TextStyle(
+                //           color: Colors.black,
+                //           fontSize: 14,
+                //           fontWeight: FontWeight.w500),
+                //     ),
+                //     onChanged: (String? value) {
+                //       setState(() {
+                //         _setDefaultCity = value.toString();
+                //       });
+                //     },
+                //   ),
+                // ),
 
-              SizedBox(
-                width: double.infinity,
-                height: 40,
-                child: ElevatedButton.icon(
-                  onPressed: addDoctorBtn,
-                  label:
-                      const Text('Add Doctor', style: TextStyle(fontSize: 20)),
-                  icon: Icon(
-                    Icons.login,
-                    color: Colors.white,
-                    size: 24.0,
+                SizedBox(
+                  width: double.infinity,
+                  height: 40,
+                  child: ElevatedButton.icon(
+                    onPressed: addDoctorBtn,
+                    label:
+                        const Text('Add Doctor', style: TextStyle(fontSize: 20)),
+                    icon: Icon(
+                      Icons.login,
+                      color: Colors.white,
+                      size: 24.0,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          )))
+              ],
+            ))),
+          
         ],
       ),
     );

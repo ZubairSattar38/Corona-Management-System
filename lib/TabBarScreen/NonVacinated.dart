@@ -3,6 +3,8 @@ import '../ApiFunc/callPatientApi.dart';
 import '../Widgets/AlertDialogBox.dart';
 
 class NonVaccinatedScreen extends StatefulWidget {
+  int type;
+  NonVaccinatedScreen(this.type);
   @override
   State createState() => new NonVaccinatedState();
 }
@@ -10,54 +12,61 @@ class NonVaccinatedScreen extends StatefulWidget {
 class NonVaccinatedState extends State<NonVaccinatedScreen> {
   List patient = [];
   final List<int> colorCodes = <int>[600, 500, 100];
-  Future<void> getPatient(String type) async {
-    patient = await getPatientApi(type);
+  
+  Future<void> getPatient(final type) async {
+    patient = await getNonVaccinatedApi(type);
+    setState(() {});
     print(patient);
   }
 
   void initState() {
     super.initState();
-    getPatient("NULL");
+    getPatient(widget.type);
   }
 
   void listViewClick(String email) {
+    print(email);
     deletePatient(email);
+    getPatient(widget.type);
+    setState(() {});
   }
 
-  @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      padding: const EdgeInsets.all(8),
+    return ListView.builder(
       itemCount: patient.length,
-      itemBuilder: (BuildContext context, int index) {
+      itemBuilder: (context, index) {
         return Container(
-          height: 50,
-          color: Colors.amber[colorCodes[index]],
-          child: Row(children: <Widget>[
-            new Padding(
-              padding: EdgeInsets.all(10),
-            ),
-            Text(patient[index]['firstName']),
-            Align(
-              alignment: Alignment.topCenter,
-              child: IconButton(
-                  icon: Icon(Icons.edit),
-                  onPressed: () {
-                    createAlertDialog(context,patient);
-                  }),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: IconButton(
-                  icon: Icon(Icons.delete),
-                  onPressed: () {
-                    listViewClick(patient[index]['email']);
-                  }),
-            ),
-          ]),
+          padding: const EdgeInsets.all(10),
+          margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+          decoration: BoxDecoration(
+              // color: Colors.amber,
+              // borderRadius: BorderRadius.circular(20),
+              ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(patient[index]['first_name'] ?? 'Not Found'),
+              Spacer(),
+              Align(
+                alignment: Alignment.topCenter,
+                child: IconButton(
+                    icon: Icon(Icons.edit),
+                    onPressed: () {
+                      createAlertDialog(context, patient, index, widget.type);
+                    }),
+              ),
+              Align(
+                alignment: Alignment.topCenter,
+                child: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      listViewClick(patient[index]['email'] ?? '');
+                    }),
+              ),
+            ],
+          ),
         );
       },
-      separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
   }
 }
