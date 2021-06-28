@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../ApiFunc/callPatientApi.dart';
 import '../TabBarScreen/NonVacinated.dart';
-
+import '../Widgets/AddDrawer.dart';
 class PatientScreen extends StatefulWidget {
   @override
   State createState() => new PatientPageState();
@@ -15,6 +15,7 @@ class PatientPageState extends State<PatientScreen> {
     return new DefaultTabController(
         length: 3,
         child: Scaffold(
+          drawer: DrawerWidget(),
           appBar: AppBar(
             bottom: TabBar(
               indicatorColor: Colors.white,

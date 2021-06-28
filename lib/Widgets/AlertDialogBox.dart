@@ -1,27 +1,46 @@
+import 'package:db_flutter/ApiFunc/callDozeApi.dart';
 import 'package:flutter/material.dart';
 import '../ApiFunc/callPatientApi.dart';
+import '../ApiFunc/callDozeApi.dart';
 
-createAlertDialog(BuildContext context, List patient, int index, int type) {
+createAlertDialog(BuildContext context, List patient, int index, int type,
+    Function getPatient, List dozes) {
   TextEditingController firstName = new TextEditingController();
   TextEditingController lastName = new TextEditingController();
 
   final vaccList = ['non_vaccinated', 'partial_vaccinated', 'fully_vaccinated'];
   // TextEditingController _setDefaultVacc = TextEditingController(text: vaccList[type - 1]);
   String _setDefaultVacc = vaccList[type - 1];
+  String _setDoze = 'Select Doze';
   Future<void> onSubmit() async {
+    Navigator.of(context).pop();
     var object = {
       "first_Name": patient[index]['first_name'],
       "last_Name": patient[index]['last_Name'],
       "vaccName": _setDefaultVacc,
-      "type" :type,
-      "email":patient[index]['email'],
+      "type": type,
+      "email": patient[index]['email'],
     };
     await updatePatienVaccinated(object);
+    getPatient(type);
   }
+
+  Future _getThingsOnStartup() async {
+    print(dozes);
+    // var map1 = Map.fromIterable(dozes, key: (e) => e.name, value: (e) => e.age);
+    // print(map1);
+    print("ok world");
+    dozes.map((item) => print("hello"));
+  }
+
   return showDialog(
       context: context,
       builder: (context) {
         return StatefulBuilder(builder: (context, setState) {
+          _getThingsOnStartup();
+          // void initState(){
+          //     doze = getDoze();
+          // }
           return AlertDialog(
               content: Stack(overflow: Overflow.visible, children: <Widget>[
             Positioned(
@@ -94,6 +113,31 @@ createAlertDialog(BuildContext context, List patient, int index, int type) {
                         );
                       }).toList(),
                     )),
+                // Padding(
+                //     padding: EdgeInsets.all(16.0),
+                //     child: DropdownButton(
+                //       value: _setDoze,
+                //       icon: const Icon(Icons.arrow_downward),
+                //       iconSize: 24,
+                //       elevation: 16,
+                //       style: const TextStyle(color: Colors.deepPurple),
+                //       hint: Text('Select Doze'),
+                //       // underline: Container(
+                //       //   height: 2,
+                //       //   color: Colors.deepPurpleAccent,
+                //       // ),
+                //       // onChanged: (String? newValue) {
+                //       //   setState(() {
+                //       //     _setDefaultVacc = newValue!;
+                //       //   });
+                //       // },
+                //       items: dozes.map<DropdownMenuItem>((item) {
+                //         return new DropdownMenuItem(
+                //           value: item['id'].toString(),
+                //           child: new Text(item['name'] ?? 'Not Found'),
+                //         );
+                //       }).toList(),
+                //     )),
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: 2, vertical: 5),
                     child: MaterialButton(
@@ -103,7 +147,6 @@ createAlertDialog(BuildContext context, List patient, int index, int type) {
                         color: Colors.teal,
                         textColor: Colors.white,
                         child: new Text("Submit"),
-                        // child: new Icon(Icons),
                         splashColor: Colors.redAccent))
               ],
             ))

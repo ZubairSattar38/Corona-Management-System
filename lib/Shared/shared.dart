@@ -11,14 +11,25 @@ Future<void>  getStringValuesSF(String key, String value) async {
     prefs.setString(key, value);
 }
 
-
+Future<void> getboolValueSafe(String key, bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool(key, value);
+}
+Future <bool> getSavedBoolValue(String key) async {
+  bool data;
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  final bool jsonBool = await prefs.getBool(key)??false;
+  
+    return jsonBool;
+}
 Future <String> getSavedValue(String key) async {
   String data;
   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  final String jsonString = await prefs.getString(key)??'';
-  data = jsonString;
-  if (jsonString!="") {
-    return data;
-  }
-  return "{}";
+  // final String jsonString = await prefs.getString(key)??'';
+  // data = jsonString;
+  // if (jsonString!="") {
+    print(prefs.getString(key)??'');
+    return prefs.getString(key)??'';
+  // }
+  // return "{}";
 }

@@ -9,6 +9,7 @@ Future<bool> authPost(var object, String type) async {
         'Content-Type': 'application/json; charset=UTF-8',
       },
       body: jsonEncode(object));
+      print(result.body);
   if (result.statusCode == 200) {
     var decodeData = json.decode(result.body);
     if (decodeData['token'].toString()!='') {
@@ -21,10 +22,13 @@ Future<bool> authPost(var object, String type) async {
       print(decodeData['roll'].toString());
       getStringValuesSF('roll', decodeData['roll'].toString());
     }
-   return Future.value(true);
-  } else {
+    getboolValueSafe('isToken',decodeData['isToken']??false);
+    if(decodeData['isToken']==true){
+      return Future.value(true);
+    }
+  } 
     return Future.value(false);
-  }
+  
 }
 
 

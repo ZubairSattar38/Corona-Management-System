@@ -116,6 +116,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "form_field_validator",
+      "rootUri": "file:///Users/zubairsattar/Development/tools/flutter/.pub-cache/hosted/pub.dartlang.org/form_field_validator-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
       "name": "http",
       "rootUri": "file:///Users/zubairsattar/Development/tools/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.3",
       "packageUri": "lib/",
@@ -314,7 +320,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-06-24T16:44:55.717069Z",
+  "generated": "2021-06-27T20:23:37.569216Z",
   "generator": "pub",
   "generatorVersion": "2.13.3"
 }

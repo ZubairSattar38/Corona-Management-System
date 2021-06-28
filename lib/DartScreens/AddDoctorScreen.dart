@@ -76,10 +76,11 @@ class AddDoctorState extends State<AddDoctor> {
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          new Image(
-            image: new AssetImage('assets/whiteBack.jpeg'),
-            fit: BoxFit.cover,
-          ),
+          
+          // new Image(
+          //   image: new AssetImage('assets/whiteBack.jpeg'),
+          //   fit: BoxFit.cover,
+          // ),
           Expanded(
                       child: new Form(
                 child: ListView(

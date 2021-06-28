@@ -135,6 +135,13 @@
             </list>
           </value>
         </entry>
+        <entry key="form_field_validator">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../tools/flutter/.pub-cache/hosted/pub.dartlang.org/form_field_validator-1.0.1/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="http">
           <value>
             <list>
@@ -378,6 +385,7 @@
       <root url="file://$PROJECT_DIR$/../../tools/flutter/.pub-cache/hosted/pub.dartlang.org/ffi-1.1.2/lib" />
       <root url="file://$PROJECT_DIR$/../../tools/flutter/.pub-cache/hosted/pub.dartlang.org/file-6.1.2/lib" />
       <root url="file://$PROJECT_DIR$/../../tools/flutter/.pub-cache/hosted/pub.dartlang.org/fl_chart-0.36.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../tools/flutter/.pub-cache/hosted/pub.dartlang.org/form_field_validator-1.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../../tools/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.3/lib" />
       <root url="file://$PROJECT_DIR$/../../tools/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../tools/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.16.1/lib" />

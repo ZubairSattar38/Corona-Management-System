@@ -1,7 +1,9 @@
+import 'package:db_flutter/Shared/shared.dart';
 import 'package:flutter/material.dart';
 import './RegisterScreen.dart';
 import '../ApiFunc/func.dart';
 import './HomeScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //   we use statefulWidget in below class because we want to apply some animations and also add image so we use statefulwidget
 class LoginPage extends StatefulWidget {
@@ -13,11 +15,16 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   TextEditingController email = new TextEditingController();
   TextEditingController password = new TextEditingController();
-  @override
+
+  final _formKey = GlobalKey<FormState>();
+
   Future<void> onLogin() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
     var object = {"email": email.text, "password": password.text};
     final isRun = await authPost(object, 'login');
-    if (isRun) {
+    final result = await getSavedBoolValue('isToken');
+    if (result && isRun ) {
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => HomeScreen()));
     } else {
@@ -27,7 +34,7 @@ class LoginPageState extends State<LoginPage> {
 
   Widget build(BuildContext context) {
     return new Scaffold(
-      resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: false,
         // scaffold is basically a structure which is provided by android  you know declared something like a app
         backgroundColor: Colors.black,
         appBar: AppBar(
@@ -52,6 +59,7 @@ class LoginPageState extends State<LoginPage> {
                     width: 150,
                   ),
                   new Form(
+                    key: _formKey,
                     child: new Theme(
                       data: new ThemeData(
                           brightness: Brightness.dark,
@@ -61,29 +69,53 @@ class LoginPageState extends State<LoginPage> {
                       child: new Container(
                           padding: new EdgeInsets.all(60.0),
                           child: new Column(children: <Widget>[
-                            new TextFormField(
-                              decoration:
-                                  new InputDecoration(labelText: "Enter Email"),
-                              keyboardType: TextInputType.emailAddress,
-                              textInputAction: TextInputAction.next,
-                              controller: email,
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 2, vertical: 5),
+                              child: TextFormField(
+                                  controller: email,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return 'Please a Enter';
+                                    } else if (!RegExp(
+                                            "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                        .hasMatch(value)) {
+                                      return 'Please a valid Email';
+                                    }
+                                    return null;
+                                  },
+                                  decoration: InputDecoration(
+                                      // border: OutlineInputBorder(),
+                                      labelText: "Enter Email")),
                             ),
-                            new TextFormField(
-                              decoration: new InputDecoration(
-                                  labelText: "Enter Password"),
-                              keyboardType: TextInputType.text,
-                              obscureText:
-                                  true, // it does not show the text while writing
-                              controller: password,
-                            ),
-                            new Padding(
-                              padding: EdgeInsets.only(top: 40),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 2, vertical: 5),
+                              child: TextFormField(
+                                  controller: password,
+                                  validator: (value) {
+                                    // add your custom validation here.
+                                    if (value == null || value.isEmpty)
+                                      return 'Please enter Password';
+                                    else if (value.length < 4) {
+                                      return 'Must be more than 6 charater';
+                                    }
+                                  },
+                                  decoration: InputDecoration(
+                                      // border: OutlineInputBorder(),
+                                      labelText: "Enter Password"),
+                                  keyboardType: TextInputType.text,
+                                  obscureText: true),
                             ),
                             SizedBox(
                               width: double.infinity,
                               height: 40,
                               child: ElevatedButton.icon(
-                                onPressed: onLogin,
+                                onPressed: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    onLogin();
+                                  }
+                                },
                                 label: const Text('Login',
                                     style: TextStyle(fontSize: 20)),
                                 icon: Icon(
