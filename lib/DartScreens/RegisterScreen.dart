@@ -3,6 +3,7 @@ import './LoginScreen.dart';
 import '../ApiFunc/func.dart';
 import 'HomeScreen.dart';
 import '../Shared/shared.dart';
+  import 'package:flutter/services.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -117,12 +118,14 @@ class RegisterPageState extends State<RegisterPage> {
                                           decoration: InputDecoration(
                                               labelText: "Enter Age"),
                                           controller: age,
+                                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                                          keyboardType: TextInputType.number,
                                           validator: (value) {
                                             if (value == null || value.isEmpty)
                                               return 'Please enter Password';
-                                            else if (value.length > 18) {
-                                              return 'Must be more than 6 charater';
-                                            }
+                                            // else if (>18) {
+                                            //   return 'Must be more than 6 charater';
+                                            // }
                                             return null;
                                           },
                                         )),
