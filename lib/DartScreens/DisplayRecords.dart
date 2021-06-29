@@ -1,12 +1,15 @@
 import 'package:db_flutter/ApiFunc/callUserApi.dart';
+import 'package:db_flutter/Widgets/AddDrawer.dart';
 import 'package:flutter/material.dart';
 import '../ApiFunc/callDoctorApi.dart';
 import '../Widgets/AlertDialogBox.dart';
 import '../ApiFunc/callDozeApi.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class DisplayRecords extends StatefulWidget {
   String type;
+ 
   DisplayRecords(this.type);
   @override
   State createState() => new DisplayRecordState();
@@ -14,6 +17,7 @@ class DisplayRecords extends StatefulWidget {
 
 class DisplayRecordState extends State<DisplayRecords> {
   List records = [];
+   bool isAdmin=false,isDoctor=false;
   final List<int> colorCodes = <int>[600, 500, 100];
 
   Future<void> getRecords(String type) async {
@@ -31,16 +35,26 @@ class DisplayRecordState extends State<DisplayRecords> {
   void initState() {
     super.initState();
     getRecords(widget.type);
+    getSharedData();
   }
-
+ Future<void> getSharedData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if (prefs.getString('roll') == 'admin') {
+      isAdmin = true;
+    }
+    if (prefs.getString('roll') == 'doctor') {
+      isDoctor = true;
+    }
+    setState(() {});
+  }
   void listViewClick(String email) {
     print(email);
-     if (widget.type == 'doze') {
-       print('Check');
+    if (widget.type == 'doze') {
+      print('Check');
       deleteDoze(email);
     } else {
-             print('Called');
-       deleteDoctor(email);
+      print('Called');
+      deleteDoctor(email);
     }
     getRecords(widget.type);
     setState(() {});
@@ -48,6 +62,7 @@ class DisplayRecordState extends State<DisplayRecords> {
 
   Widget build(BuildContext context) {
     return new Scaffold(
+        drawer: DrawerWidget(),
         appBar: AppBar(
           // automaticallyImplyLeading: false,
           centerTitle: true,
@@ -75,7 +90,11 @@ class DisplayRecordState extends State<DisplayRecords> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   widget.type == "doze"
-                      ? Text(records[index]['name'] ?? 'Not Found')
+                      ? Text(records[index]['name'] +
+                              '    ( ' +
+                              records[index]['no_of_dozes'].toString() +
+                              ' ) ' ??
+                          'Not Found')
                       : Text(records[index]['first_name'] ?? 'Not Found'),
                   Spacer(),
                   // Align(
@@ -87,6 +106,7 @@ class DisplayRecordState extends State<DisplayRecords> {
                   //             context, records, index, widget.type, getDoctor);
                   //       }),
                   // ),
+                  (isAdmin || isDoctor)?
                   Align(
                     alignment: Alignment.topCenter,
                     child: IconButton(
@@ -96,7 +116,8 @@ class DisplayRecordState extends State<DisplayRecords> {
                               ? (records[index]['name'] ?? '')
                               : (records[index]['email'] ?? ''));
                         }),
-                  ),
+                  ):Container(),
+
                   Divider(),
                 ],
               ),

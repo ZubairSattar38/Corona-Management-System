@@ -15,7 +15,6 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   TextEditingController email = new TextEditingController();
   TextEditingController password = new TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
 
   Future<void> onLogin() async {
@@ -24,13 +23,31 @@ class LoginPageState extends State<LoginPage> {
     var object = {"email": email.text, "password": password.text};
     final isRun = await authPost(object, 'login');
     final result = await getSavedBoolValue('isToken');
-    if (result && isRun ) {
+    if (result && isRun) {
       Navigator.of(context)
           .push(MaterialPageRoute(builder: (context) => HomeScreen()));
     } else {
       print('Successfully Not Executed');
     }
   }
+
+  Future<void> tokenValid()async {
+    print("Called Func ");
+    final result = await getSavedBoolValue('isToken');
+    print(result);
+    if (!result) {
+      print("SuccessFully Login");
+    } else {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => HomeScreen()));
+    }
+  }
+  void initState() {
+    super.initState();
+    tokenValid();
+  }
+
+  
 
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -74,6 +91,7 @@ class LoginPageState extends State<LoginPage> {
                                   horizontal: 2, vertical: 5),
                               child: TextFormField(
                                   controller: email,
+                                   textInputAction: TextInputAction.next,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Please a Enter';
@@ -92,6 +110,7 @@ class LoginPageState extends State<LoginPage> {
                               padding: EdgeInsets.symmetric(
                                   horizontal: 2, vertical: 5),
                               child: TextFormField(
+                                          // textInputAction: TextInputAction.next,
                                   controller: password,
                                   validator: (value) {
                                     // add your custom validation here.

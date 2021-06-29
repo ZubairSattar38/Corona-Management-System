@@ -47,6 +47,8 @@ Future<void> tokenValid()async {
     return Scaffold(
       drawer: DrawerWidget(),
       appBar: AppBar(
+                    backgroundColor: Color(0xff5808e5),
+
         centerTitle: true,
         title: Text('DashBoard'),
       ),

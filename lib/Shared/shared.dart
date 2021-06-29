@@ -6,7 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
     prefs.setStringList(_patientList, list);
   } 
 
-Future<void>  getStringValuesSF(String key, String value) async {
+Future<void>  setStringValuesSF(String key, String value) async {
+    print('Value of Key $value');
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(key, value);
 }

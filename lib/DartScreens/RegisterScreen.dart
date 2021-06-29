@@ -14,6 +14,8 @@ class RegisterPageState extends State<RegisterPage> {
   TextEditingController lastName = new TextEditingController();
   TextEditingController email = new TextEditingController();
   TextEditingController password = new TextEditingController();
+  TextEditingController age = new TextEditingController();
+
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
 
@@ -23,7 +25,8 @@ class RegisterPageState extends State<RegisterPage> {
         'firstName': firstName.text,
         "lastName": lastName.text,
         "email": email.text,
-        "password": password.text
+        "password": password.text,
+        "age": age.text
       };
       final isRun = await authPost(object, 'register');
       print(isRun);
@@ -78,6 +81,7 @@ class RegisterPageState extends State<RegisterPage> {
                                           horizontal: 2, vertical: 5),
                                       child: TextFormField(
                                           controller: firstName,
+                                          textInputAction: TextInputAction.next,
                                           validator: (value) {
                                             if (value == null ||
                                                 value.isEmpty) {
@@ -93,6 +97,7 @@ class RegisterPageState extends State<RegisterPage> {
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 2, vertical: 5),
                                       child: TextFormField(
+                                          textInputAction: TextInputAction.next,
                                           controller: lastName,
                                           validator: (value) {
                                             if (value == null ||
@@ -106,10 +111,27 @@ class RegisterPageState extends State<RegisterPage> {
                                               labelText: "Enter Last Name")),
                                     ),
                                     Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: TextFormField(
+                                          textInputAction: TextInputAction.next,
+                                          decoration: InputDecoration(
+                                              labelText: "Enter Age"),
+                                          controller: age,
+                                          validator: (value) {
+                                            if (value == null || value.isEmpty)
+                                              return 'Please enter Password';
+                                            else if (value.length > 18) {
+                                              return 'Must be more than 6 charater';
+                                            }
+                                            return null;
+                                          },
+                                        )),
+                                    Padding(
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 2, vertical: 5),
                                       child: TextFormField(
                                           controller: email,
+                                          textInputAction: TextInputAction.next,
                                           validator: (value) {
                                             if (value == null ||
                                                 value.isEmpty) {
@@ -129,6 +151,7 @@ class RegisterPageState extends State<RegisterPage> {
                                       padding: EdgeInsets.symmetric(
                                           horizontal: 2, vertical: 5),
                                       child: TextFormField(
+                                          textInputAction: TextInputAction.next,
                                           controller: password,
                                           validator: (value) {
                                             // add your custom validation here.
@@ -140,6 +163,7 @@ class RegisterPageState extends State<RegisterPage> {
                                           },
                                           decoration: InputDecoration(
                                               // border: OutlineInputBorder(),
+
                                               labelText: "Enter Password"),
                                           keyboardType: TextInputType.text,
                                           obscureText: true),

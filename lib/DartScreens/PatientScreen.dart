@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../ApiFunc/callPatientApi.dart';
 import '../TabBarScreen/NonVacinated.dart';
 import '../Widgets/AddDrawer.dart';
+
 class PatientScreen extends StatefulWidget {
   @override
   State createState() => new PatientPageState();
@@ -9,9 +10,7 @@ class PatientScreen extends StatefulWidget {
 
 class PatientPageState extends State<PatientScreen> {
   @override
-
   Widget build(BuildContext context) {
-   
     return new DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -34,13 +33,16 @@ class PatientPageState extends State<PatientScreen> {
             ),
             automaticallyImplyLeading: false,
             backgroundColor: Color(0xff5808e5),
-            title: Text('Patients'),
+            title: Text(
+              'Patients',
+              textAlign: TextAlign.center,
+            ),
           ),
           body: TabBarView(
             children: <Widget>[
-               NonVaccinatedScreen(1),
-               NonVaccinatedScreen(2),
-               NonVaccinatedScreen(3),
+              NonVaccinatedScreen(1),
+              NonVaccinatedScreen(2),
+              NonVaccinatedScreen(3),
             ],
           ),
         ));

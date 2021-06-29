@@ -1,10 +1,11 @@
 import 'package:db_flutter/ApiFunc/callDozeApi.dart';
+import 'package:db_flutter/models/dose.dart';
 import 'package:flutter/material.dart';
 import '../ApiFunc/callPatientApi.dart';
 import '../ApiFunc/callDozeApi.dart';
 
 createAlertDialog(BuildContext context, List patient, int index, int type,
-    Function getPatient, List dozes) {
+    Function getPatient, List<Dose> dozes) {
   TextEditingController firstName = new TextEditingController();
   TextEditingController lastName = new TextEditingController();
 

@@ -1,8 +1,8 @@
+import 'package:db_flutter/models/dose.dart';
 import 'package:flutter/material.dart';
 import '../ApiFunc/callDoctorApi.dart';
 import '../Widgets/AlertDialogBox.dart';
 import '../ApiFunc/callDozeApi.dart';
-
 
 // ignore: must_be_immutable
 class NonVaccinatedScreenDoctor extends StatefulWidget {
@@ -14,27 +14,30 @@ class NonVaccinatedScreenDoctor extends StatefulWidget {
 
 class NonVaccinatedState extends State<NonVaccinatedScreenDoctor> {
   List doctor = [];
-    List dozes = [];
-    
-
+  List dozes = [];
   final List<int> colorCodes = <int>[600, 500, 100];
+  List<Dose> _list = [];
 
   Future<void> getDoctor(final type) async {
     doctor = await getNonVaccinatedApi(type);
     setState(() {});
     print(doctor);
   }
+  Future<void> getDozeData() async {
+    dozes = await getDoze();
+    dozes.forEach((element) {
+      _list.add(Dose.fromMap(element));
+      setState(() {});
+    });
+    print(dozes);
+  }
 
   void initState() {
     super.initState();
-    // getDozeData();
+    getDozeData();
     getDoctor(widget.type);
   }
-  Future<void> getDozeData() async {
-    dozes = await getDoze();
-    setState(() {});
-    print(dozes);
-  }
+
   void listViewClick(String email) {
     print(email);
     deleteDoctor(email);
@@ -54,7 +57,6 @@ class NonVaccinatedState extends State<NonVaccinatedScreenDoctor> {
               // borderRadius: BorderRadius.circular(20),
               ),
           child: Row(
-            
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(doctor[index]['first_name'] ?? 'Not Found'),
@@ -65,7 +67,7 @@ class NonVaccinatedState extends State<NonVaccinatedScreenDoctor> {
                     icon: Icon(Icons.edit),
                     onPressed: () {
                       createAlertDialog(
-                          context, doctor, index, widget.type, getDoctor,dozes);
+                          context, doctor, index, widget.type, getDoctor,_list);
                     }),
               ),
               Align(
@@ -76,12 +78,10 @@ class NonVaccinatedState extends State<NonVaccinatedScreenDoctor> {
                       listViewClick(doctor[index]['email'] ?? '');
                     }),
               ),
-            Divider(), 
-               
+              Divider(),
             ],
           ),
-          
-        );       
+        );
       },
     );
   }
